@@ -1,4 +1,4 @@
-[![](https://jitpack.io/v/santukis/proteo.svg)](https://jitpack.io/#santukis/upperActionBar)
+[![](https://jitpack.io/v/santukis/upperActionBar.svg)](https://jitpack.io/#santukis/upperActionBar)
 
 # upperActionBar
 View to easily manage Android ActionBar
