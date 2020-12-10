@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="UpperActionBar">
+        <attr name="expandedToolbarBackgroundColor" format="color"/>
+        <attr name="collapsedToolbarBackgroundColor" format="color"/>
+        <attr name="expandedToolbarIconColor" format="color"/>
+        <attr name="collapsedToolbarIconColor" format="color"/>
+        <attr name="collapsedToolbarTextColor" format="color"/>
+        <attr name="expandedToolbarTextColor" format="color"/>
+        <attr name="leftIcon" format="reference"/>
+        <attr name="logo" format="reference"/>
+        <attr name="title" format="string"/>
+    </declare-styleable>
+</resources>
