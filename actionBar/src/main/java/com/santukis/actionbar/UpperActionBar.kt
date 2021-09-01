@@ -1,5 +1,6 @@
 package com.santukis.actionbar
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.PorterDuff
@@ -53,7 +54,7 @@ class UpperActionBar @JvmOverloads constructor(context: Context, attrs: Attribut
     private fun initializeViewComponents(attrs: AttributeSet?) {
         collapsingToolbar = (initializeComponentIfAvailable(R.layout.element_toolbar) as CollapsingToolbarLayout)
         expandedContainer = collapsingToolbar.findViewById(R.id.expanded_container)
-        toolbar = collapsingToolbar.findViewById(R.id.toolbar)
+        toolbar = collapsingToolbar.findViewById(R.id.uab_toolbar)
 
         val attributes = context.obtainStyledAttributes(attrs, R.styleable.UpperActionBar)
 
@@ -129,14 +130,18 @@ class UpperActionBar @JvmOverloads constructor(context: Context, attrs: Attribut
             ViewGroup.LayoutParams.WRAP_CONTENT,
             ViewGroup.LayoutParams.WRAP_CONTENT
         ).apply { this.gravity = gravity })
+
+        this.title?.isSelected = true
     }
 
+    @SuppressLint("RestrictedApi")
     fun showExpandedTitle(title: String, gravity: Int = Gravity.BOTTOM) {
         hideTitle()
         collapsingToolbar.isTitleEnabled = true
         collapsingToolbar.title = title
         collapsingToolbar.expandedTitleGravity = gravity
         collapsingToolbar.expandedTitleMarginBottom = resources.getDimensionPixelSize(R.dimen.large_space)
+        collapsingToolbar.maxLines = 3
         collapsingToolbar.setExpandedTitleTextAppearance(android.R.style.TextAppearance_DeviceDefault_Large)
         collapsingToolbar.setExpandedTitleColor(ContextCompat.getColor(context, expandedToolbarTextColor))
         collapsingToolbar.setCollapsedTitleTextColor(ContextCompat.getColor(context, collapsedToolbarTextColor))
@@ -145,7 +150,11 @@ class UpperActionBar @JvmOverloads constructor(context: Context, attrs: Attribut
     fun hideTitle() {
         collapsingToolbar.isTitleEnabled = false
         collapsingToolbar.title = " "
-        title?.apply { text = " "; toolbar.removeView(this) }
+        title?.apply {
+            text = " ";
+            toolbar.removeView(this)
+            isSelected = false
+        }
     }
 
     fun showMenu(menuRes: Int, shouldClearPreviousMenu: Boolean) {
@@ -217,6 +226,7 @@ class UpperActionBar @JvmOverloads constructor(context: Context, attrs: Attribut
             width = 0
             height = 0
         }
+        toolbar.visibility = View.GONE
         postInvalidate()
     }
 
@@ -225,6 +235,7 @@ class UpperActionBar @JvmOverloads constructor(context: Context, attrs: Attribut
             width = ViewGroup.LayoutParams.MATCH_PARENT
             height = ViewGroup.LayoutParams.WRAP_CONTENT
         }
+        toolbar.visibility = View.VISIBLE
         postInvalidate()
     }
 

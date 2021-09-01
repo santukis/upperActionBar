@@ -11,6 +11,9 @@
     android:textStyle="bold"
     style="@style/TextAppearance.AppCompat.Medium"
     android:textColor="@color/colorPrimaryDark"
-    android:ellipsize="end"
-    android:maxLines="1"
+    android:ellipsize="marquee"
+    android:singleLine="true"
+    android:marqueeRepeatLimit="marquee_forever"
+    android:freezesText="true"
+    android:scrollHorizontally="true"
     tools:text="Favoritos"/>
